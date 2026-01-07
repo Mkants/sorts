@@ -4,11 +4,11 @@ let doubleSelectionSortGenerator: Generator;
 
 function* doubleSelectionSortMain(speed: number) {
 	let i: number = 0,
-		j: number = 0,
+		j: number,
 		k: number,
 		l: number,
 		count: number = 0;
-	while (i *2 - 1 < sortList.length) {
+	while (i < Math.floor(sortList.length /2)) {
 		j = i;
 		k = i;
 		l = i;
@@ -24,8 +24,15 @@ function* doubleSelectionSortMain(speed: number) {
 			}
 			k++;
 		}
-		Swap(i, j);
-		Swap(sortList.length - i - 1, l);
+			Swap(i, j);
+		if (i == l) {
+			if (j != sortList.length - i - 1) {
+				Swap(sortList.length - i - 1, j);
+			}
+		} else {
+			Swap(sortList.length - i - 1, l);
+		}
+
 		i++;
 		if (count++ % speed == 0) {
 			yield;

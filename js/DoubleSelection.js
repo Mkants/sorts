@@ -1,8 +1,8 @@
 import { Read, Swap, Draw, sortList } from "./utils.js";
 let doubleSelectionSortGenerator;
 function* doubleSelectionSortMain(speed) {
-    let i = 0, j = 0, k, l, count = 0;
-    while (i * 2 - 1 < sortList.length) {
+    let i = 0, j, k, l, count = 0;
+    while (i < Math.floor(sortList.length / 2)) {
         j = i;
         k = i;
         l = i;
@@ -19,7 +19,14 @@ function* doubleSelectionSortMain(speed) {
             k++;
         }
         Swap(i, j);
-        Swap(sortList.length - i - 1, l);
+        if (i == l) {
+            if (j != sortList.length - i - 1) {
+                Swap(sortList.length - i - 1, j);
+            }
+        }
+        else {
+            Swap(sortList.length - i - 1, l);
+        }
         i++;
         if (count++ % speed == 0) {
             yield;
