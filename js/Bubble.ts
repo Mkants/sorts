@@ -3,15 +3,12 @@ import {Draw, Read, sortList, Swap} from "./utils.js";
 let bubbleSortGenerator: Generator;
 
 function* bubbleSortMain(speed: number) {
-	let i: number = 0,
-		swapped: boolean = true,
+	let i:number,
 		count: number = 0;
-	while (swapped) {
-		swapped = false;
+	for (let j = 0; j < sortList.length; j++) {
 		i = 0;
-		while (i < sortList.length) {
+		while (i < sortList.length - j - 1) {
 			if (Read(i) > Read(i + 1)) {
-				swapped = true;
 				Swap(i, i + 1);
 			}
 			if (count++ % speed == 0) {
